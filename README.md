@@ -13,11 +13,23 @@ _A set of Vue.js components to display an interactive SVG map._
 
 ### npm
 
-`npm install --save svg-map`
+```shell
+# Install package
+npm install --save @vocweb/svg-map 
+
+# Install SVG map 
+npm install --save @svg-maps/japan
+```
 
 ### yarn
 
-`yarn add svg-map`
+```shell
+# Install package
+yarn add @vocweb/svg-map 
+
+# Install SVG map 
+yarn @svg-maps/japan
+```
 
 ## Usage
 
@@ -29,18 +41,18 @@ This is the base component to display an SVG map.
 
 In a SFC (Single File Component):
 
-- Import `SvgMap` component from `SvgMap`
+- Import `SvgMap` component from `@vocweb/svg-map`
 - Import the map you want
 - Optionally, import `svg-map/dist/index.css` if you want to apply the default styles
 
 ```vue
 <template>
-	<SvgMap :map="Taiwan" />
+	<SvgMap :map="Japan" />
 </template>
 
 <script>
-import { SvgMap } from "SvgMap";
-import Taiwan from "@svg-maps/taiwan";
+import { SvgMap } from "@vocweb/svg-map";
+import Japan from "@svg-maps/japan";
 
 export default {
 	name: "MyMap",
@@ -85,18 +97,18 @@ There are 2 named slots:
 This is an implementation of `SvgMap` that behaves like a group of checkboxes.  
 It is based on this [WAI-ARIA example](https://www.w3.org/TR/wai-aria-practices/examples/checkbox/checkbox-1/checkbox-1.html) to support keyboard navigation and be accessible.
 
-- Import `CheckboxSvgMap` component from `SvgMap`
+- Import `CheckboxSvgMap` component from `@vocweb/svg-map`
 - Import the map you want
 - Optionally, import `svg-map/dist/index.css` if you want to apply the default styles
 
 ```vue
 <template>
-	<checkbox-svg-map v-model="selectedLocations" :map="Taiwan" />
+	<checkbox-svg-map v-model="selectedLocations" :map="Japan" />
 </template>
 
 <script>
-import { CheckboxSvgMap } from "SvgMap";
-import Taiwan from "@svg-maps/taiwan";
+import { CheckboxSvgMap } from "@vocweb/svg-map";
+import Japan from "@svg-maps/japan";
 
 export default {
 	name: "MyCheckboxMap",
@@ -105,7 +117,7 @@ export default {
 	},
 	data() {
 		return {
-			Taiwan,
+			Japan,
 			selectedLocations: []
 		};
 	}
@@ -146,18 +158,18 @@ Like in `SvgMap` there are 2 named slots:
 This is an implementation of `SvgMap` that behaves like a group of radio buttons.  
 It is based on this [WAI-ARIA example](https://www.w3.org/TR/wai-aria-practices/examples/radio/radio-1/radio-1.html) to support keyboard navigation and be accessible.
 
-- Import `RadioSvgMap` component from `SvgMap`
+- Import `RadioSvgMap` component from ``@vocweb/svg-map`
 - Import the map you want
 - Optionally, import `svg-map/dist/index.css` if you want to apply the default styles
 
 ```vue
 <template>
-	<radio-svg-map v-model="selectedLocation" :map="Taiwan" />
+	<radio-svg-map v-model="selectedLocation" :map="Japan" />
 </template>
 
 <script>
-import { RadioSvgMap } from "SvgMap";
-import Taiwan from "@svg-maps/taiwan";
+import { RadioSvgMap } from "@vocweb/svg-map";
+import Japan from "@svg-maps/japan";
 
 export default {
 	name: "MyRadioMap",
@@ -166,7 +178,7 @@ export default {
 	},
 	data() {
 		return {
-			Taiwan,
+			Japan,
 			selectedLocation: null
 		};
 	}
@@ -221,12 +233,12 @@ You can modify existing maps or create your own.
 
 ```vue
 <template>
-	<svg-map :map="customTaiwan" />
+	<SvgMap :map="customJapan" />
 </template>
 
 <script>
-import { SvgMap } from "SvgMap";
-import Taiwan from "@svg-maps/taiwan";
+import { SvgMap } from "@vocweb/svg-map";
+import Japan from "@svg-maps/japan";
 
 export default {
 	name: "MyMap",
@@ -235,10 +247,10 @@ export default {
 	},
 	data() {
 		return {
-			customTaiwan: {
-				...Taiwan,
+			customJapan: {
+				...Japan,
 				label: "Custom map label",
-				locations: Taiwan.locations.map(location => {
+				locations: Japan.locations.map(location => {
 					// Modify each location to customize/add attributes of <path>
 				})
 			}

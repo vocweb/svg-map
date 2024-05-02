@@ -19,12 +19,11 @@ export default {
 	},
 	external: ["Vue"], // Vueはその環境に読み込まれているVueを使うため、バンドルしない
 	plugins: [
+		scss({
+			fileName: 'index.css',
+		}),
 		vue({
 			compileTemplate: true,
-		}),
-		// vue(),
-		scss({
-			output: 'dist/index.css',
 		}),
 		commonjs(),
 		buble(),
