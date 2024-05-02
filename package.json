@@ -1,0 +1,49 @@
+{
+  "name": "svg-map",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "keywords": [
+    "vue",
+    "component",
+    "svg",
+    "interactive",
+    "map",
+    "checkbox",
+    "radiobutton"
+  ],
+  "license": "MIT",
+  "main": "dist/index.umd.js",
+  "module": "dist/index.esm.js",
+  "unpkg": "dist/index.min.js",
+  "browser": {
+    "./sfc/SvgMap": "src/components/SvgMap.vue",
+    "./sfc/CheckboxSvgMap": "src/components/CheckboxSvgMap.vue",
+    "./sfc/RadioSvgMap": "src/components/RadioSvgMap.vue"
+  },
+  "files": [
+    "/src/components/*.vue",
+    "/dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build:umd": "rollup --config rollup.config.js --format umd --file dist/index.umd.js",
+    "build:es": "rollup --config rollup.config.js --format es --file dist/index.esm.js",
+    "build:unpkg": "rollup --config rollup.config.js --format iife --file dist/index.min.js",
+    "build": "npm run build:umd & npm run build:es & npm run build:unpkg",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "rollup": "^4.17.2",
+    "rollup-plugin-buble": "^0.19.8",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-vue": "^6.0.0",
+    "sass": "^1.76.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.2.0",
+    "vue-tsc": "^2.0.6",
+    "vue": "^3.4.21"
+  }
+}
