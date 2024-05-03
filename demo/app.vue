@@ -1,17 +1,18 @@
 <template>
   <div>
+
     <MapCheckbox />
 
     <hr />
 
-    <MapLink />
+    <!-- <MapLink /> -->
 
     <hr />
 
-    <MapRadio />
+    <!-- <MapRadio /> -->
 
     <hr />
 
-    <MapTooltip />
+    <!-- <MapTooltip /> -->
   </div>
 </template>

@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="examples__block__map examples__block__map--australia">
-            <radio-svg-map v-model="selectedLocation" :map="Australia" @mouseover="pointLocation" @mouseout="unpointLocation" @focus="focusLocation" @blur="blurLocation" />
+            <radio-svg-map v-model="selectedLocation" :map="Australia" @change="handleClick" @mouseover="pointLocation" @mouseout="unpointLocation" @focus="focusLocation" @blur="blurLocation" />
         </div>
     </article>
 </template>
@@ -39,16 +39,26 @@ export default {
         }
     },
     methods: {
+        handleClick(location) {
+            console.log("Parent - Map name:" + location.attributes.name.value);
+            console.log("Parent - Map Id:" + location.id);
+            this.focusedLocation = getLocationName(location);
+            this.selectedLocation = location.id;
+        },
         pointLocation(event) {
+            console.log("Parent - pointLocation:");
             this.pointedLocation = getLocationName(event.target)
         },
         unpointLocation(event) {
+            console.log("Parent - unpointLocation:");
             this.pointedLocation = null
         },
         focusLocation(event) {
+            console.log("Parent - focusLocation:");
             this.focusedLocation = getLocationName(event.target)
         },
         blurLocation(event) {
+            console.log("Parent - blurLocation:");
             this.focusedLocation = null
         },
         getSelectedLocationName,
