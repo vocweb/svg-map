@@ -46,7 +46,7 @@ export default {
 		},
 	},
 	mounted() {
-		this.locations = this.$refs.svg.$el.querySelectorAll('path')
+		this.locations = this.$refs.svg.$el.querySelectorAll('path');
 	},
 	methods: {
 		/**
