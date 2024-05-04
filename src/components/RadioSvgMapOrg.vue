@@ -6,6 +6,7 @@
 		location-role="radio"
 		:location-tabindex="getLocationTabindex"
 		:is-location-selected="isLocationSelected"
+		v-on="$listeners"
 		@click="selectLocation($event.target)"
 		@keydown.space.prevent="toggleLocation"
 		@keydown.down.prevent="selectNextLocation"
@@ -45,15 +46,15 @@ export default {
 		},
 	},
 	mounted() {
-		// this.locations = this.$refs.svg.$el.querySelectorAll('path');
+		this.locations = this.$refs.svg.$el.querySelectorAll('path');
 	},
 	methods: {
 		/**
 		 * Get tabindex value of a location
-		*
-		* @param {Object} location - Location object
-		* @param {number} index - Index of location
-		* @returns {string} Value of tabindex HTML attribute
+	   *
+	   * @param {Object} location - Location object
+	   * @param {number} index - Index of location
+	   * @returns {string} Value of tabindex HTML attribute
 	 	 */
 		getLocationTabindex(location, index) {
 			let tabindex = null
@@ -91,8 +92,7 @@ export default {
 				location.focus()
 
 				// Emit id of selected location
-				// this.$emit('change', location.id)
-				this.$emit('change', location)
+				this.$emit('change', location.id)
 			}
 		},
 
@@ -102,7 +102,7 @@ export default {
 	 	 * @param {Event} event - Triggered event
 	 	 */
 		toggleLocation(event) {
-			const focusedLocation = event.target;
+			const focusedLocation = event.target
 
 			if (this.value !== focusedLocation.id) {
 				this.selectLocation(focusedLocation)

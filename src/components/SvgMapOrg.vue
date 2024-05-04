@@ -19,6 +19,7 @@
 			:aria-label="location.name"
 			:aria-checked="isLocationSelected && isLocationSelected(location, index)"
 			v-bind="getLocationCustomProperties(location)"
+			v-on="$listeners"
 		/>
 		<slot name="after" />
 	</svg>

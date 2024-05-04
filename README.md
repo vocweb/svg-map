@@ -18,7 +18,7 @@ _A set of Vue.js components to display an interactive SVG map._
 npm install --save @vocweb/svg-map 
 
 # Install SVG map 
-npm install --save @svg-maps/japan
+npm install --save @vocweb/svg-maps/japan
 ```
 
 ### yarn
@@ -43,7 +43,7 @@ In a SFC (Single File Component):
 
 - Import `SvgMap` component from `@vocweb/svg-map`
 - Import the map you want
-- Optionally, import `svg-map/dist/index.css` if you want to apply the default styles
+- Optionally, import `@vocweb/svg-map/dist/index.css` if you want to apply the default styles
 
 ```vue
 <template>
@@ -61,13 +61,13 @@ export default {
 	},
 	data() {
 		return {
-			Taiwan
+			Japan
 		};
 	}
 };
 </script>
 
-<style src="svg-map/dist/index.css"></style>
+<style src="@vocweb/svg-map/dist/index.css"></style>
 ```
 
 #### Props
@@ -99,7 +99,7 @@ It is based on this [WAI-ARIA example](https://www.w3.org/TR/wai-aria-practices/
 
 - Import `CheckboxSvgMap` component from `@vocweb/svg-map`
 - Import the map you want
-- Optionally, import `svg-map/dist/index.css` if you want to apply the default styles
+- Optionally, import `@vocweb/svg-map/dist/index.css` if you want to apply the default styles
 
 ```vue
 <template>
@@ -124,7 +124,7 @@ export default {
 };
 </script>
 
-<style src="svg-map/dist/index.css"></style>
+<style src="@vocweb/svg-map/dist/index.css"></style>
 ```
 
 #### Props
@@ -160,7 +160,7 @@ It is based on this [WAI-ARIA example](https://www.w3.org/TR/wai-aria-practices/
 
 - Import `RadioSvgMap` component from ``@vocweb/svg-map`
 - Import the map you want
-- Optionally, import `svg-map/dist/index.css` if you want to apply the default styles
+- Optionally, import `@vocweb/svg-map/dist/index.css` if you want to apply the default styles
 
 ```vue
 <template>
@@ -185,7 +185,7 @@ export default {
 };
 </script>
 
-<style src="svg-map/dist/index.css"></style>
+<style src="@vocweb/svg-map/dist/index.css"></style>
 ```
 
 #### Props
