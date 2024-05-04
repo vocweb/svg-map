@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="examples__block__map">
-            <checkbox-svg-map v-model="selectedLocations" :map="Brazil" @mouseover="pointLocation" @mouseout="unpointLocation" @focus="focusLocation" @blur="blurLocation" />
+            <checkbox-svg-map v-model="selectedLocations" :map="Brazil" @change="handleClick" @mouseover="pointLocation" @mouseout="unpointLocation" @focus="focusLocation" @blur="blurLocation" />
         </div>
     </article>
 </template>
@@ -44,6 +44,12 @@ export default {
         }
     },
     methods: {
+        handleClick(locations) {
+            console.log("Parent - Map name:" + locations);
+            // console.log("Parent - Map Id:" + location.id);
+            // this.focusedLocation = getLocationName(location);
+            // this.selectedLocation = location.id;
+        },
         pointLocation(event) {
             this.pointedLocation = getLocationName(event.target)
         },

@@ -38,10 +38,10 @@ export default {
 	},
 	methods: {
 		/**
-		   * Indicate whether a location is selected
-		   *
-		   * @param {Object} location - Location DOM object
-		   * @returns {boolean} True if the location is selected
+	 	 * Indicate whether a location is selected
+	 	 *
+	 	 * @param {Object} location - Location DOM object
+	 	 * @returns {boolean} True if the location is selected
 		 */
 		isLocationSelected(location) {
 			console.log('isLocationSelected');
@@ -50,9 +50,9 @@ export default {
 
 		/**
 		 * Select/deselect a location
-		   *
-		   * @param {Event} event - Triggered event
-		   */
+	 	 *
+	 	 * @param {Event} event - Triggered event
+	 	 */
 		toggleLocation(event) {
 			const locationElt = event.target;
 			let selectedLocations = [];
@@ -61,7 +61,7 @@ export default {
 			if (locationElt.attributes['aria-checked'] && locationElt.attributes['aria-checked'].value === 'true') {
 				// Delete location
 				selectedLocations = this.value.filter(location => location !== locationElt.id)
-
+				
 				console.log('toggleLocation :: 00');
 				console.log(selectedLocations);
 
