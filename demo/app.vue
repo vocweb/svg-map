@@ -1,18 +1,19 @@
 <template>
   <div>
 
-    <MapCheckbox />
+    <!-- <MapCheckbox /> -->
 
     <hr />
 
-    <MapLink />
+    <!-- <MapLink /> -->
 
     <hr />
 
-    <MapRadio />
+    <!-- <MapVietnamCustom /> -->
+    <MapVietnamRadio />
 
     <hr />
 
-    <MapTooltip />
+    <!-- <MapTooltip /> -->
   </div>
 </template>

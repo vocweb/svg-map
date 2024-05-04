@@ -18,7 +18,8 @@ _A set of Vue.js components to display an interactive SVG map._
 npm install --save @vocweb/svg-map 
 
 # Install SVG map 
-npm install --save @vocweb/svg-maps/japan
+npm install --save @svg-country-maps/japan
+npm install --save @svg-country-maps/vietnam
 ```
 
 ### yarn

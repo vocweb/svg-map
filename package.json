@@ -1,6 +1,6 @@
 {
   "name": "@vocweb/svg-map",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "keywords": [
     "vue",
@@ -42,7 +42,10 @@
     "sass": "^1.76.0",
     "typescript": "^5.2.2",
     "vite": "^5.2.0",
-    "vue-tsc": "^2.0.6",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-tsc": "^2.0.6"
+  },
+  "dependencies": {
+    "@svg-country-maps/vietnam": "^1.0.1"
   }
 }
