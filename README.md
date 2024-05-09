@@ -1,4 +1,4 @@
-# vue-svg-map
+# svg-map
 
 [![npm version](https://badge.fury.io/js/vue-svg-map.svg)](https://badge.fury.io/js/vue-svg-map)
 [![Build Status](https://travis-ci.com/VictorCazanave/vue-svg-map.svg?branch=master)](https://travis-ci.com/VictorCazanave/vue-svg-map)
@@ -34,7 +34,13 @@ yarn @svg-maps/japan
 
 ## Usage
 
+### Demo
 
+- Svg map: `demo/components/map/Link.vue`
+- Checkbox map: `demo/components/map/Checkbox.vue`
+- Link map: `demo/components/map/Link.vue`
+- Radio map: `demo/components/map/Radio.vue`
+- Tooltip map: `demo/components/map/Tooltip.vue`
 
 ### :earth_africa: Simple SVG Map
 
@@ -48,7 +54,7 @@ In a SFC (Single File Component):
 
 ```vue
 <template>
-	<SvgMap :map="Japan" />
+	<svg-map :map="Japan" />
 </template>
 
 <script>
@@ -234,7 +240,7 @@ You can modify existing maps or create your own.
 
 ```vue
 <template>
-	<SvgMap :map="customJapan" />
+	<svg-map :map="customJapan" />
 </template>
 
 <script>
