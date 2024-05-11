@@ -1,13 +1,6 @@
 # svg-map
 
-[![npm version](https://badge.fury.io/js/vue-svg-map.svg)](https://badge.fury.io/js/vue-svg-map)
-[![Build Status](https://travis-ci.com/VictorCazanave/vue-svg-map.svg?branch=master)](https://travis-ci.com/VictorCazanave/vue-svg-map)
-[![codecov](https://codecov.io/gh/VictorCazanave/vue-svg-map/branch/master/graph/badge.svg)](https://codecov.io/gh/VictorCazanave/vue-svg-map)
-[![Dependency Status](https://david-dm.org/VictorCazanave/vue-svg-map.svg)](https://david-dm.org/VictorCazanave/vue-svg-map)
-[![peerDependencies Status](https://david-dm.org/VictorCazanave/vue-svg-map/peer-status.svg)](https://david-dm.org/VictorCazanave/vue-svg-map?type=peer)
-
 _A set of Vue.js components to display an interactive SVG map._
-
 
 ## Installation
 
