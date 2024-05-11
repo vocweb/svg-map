@@ -11,7 +11,7 @@
 	>
 		<!-- Pass down slots to SvgMap: https://stackoverflow.com/a/50892881/9826498 -->
 		<template
-			v-for="(_, slotName) of $scopedSlots"
+			v-for="(_, slotName) of scopedSlots"
 			v-slot:[slotName]="scope"
 		>
 			<slot
@@ -38,6 +38,10 @@ export default {
 		value: {
 			type: Array,
 			default: () => [],
+		},
+		scopedSlots: {
+			type: Object,
+			default: () => { }, // Provide a default empty function if not passed
 		},
 	},
 	methods: {
