@@ -1,7 +1,7 @@
 <template>
     <article class="examples__block">
         <h2 class="examples__block__title">
-            Australia SVG map as radio buttons
+            Vietnam SVG map as radio buttons
         </h2>
         <div class="examples__block__info">
             <div class="examples__block__info__item">
@@ -40,7 +40,9 @@ export default {
     },
     methods: {
         handleClick(location) {
-            console.log("Parent - Map name:" + location.attributes.name.value);
+            if (location.attributes.name) {
+                console.log("Parent - Map name:" + location.attributes.name.value);
+            }
             console.log("Parent - Map Id:" + location.id);
             // console.log(location);
             this.focusedLocation = getLocationName(location);
