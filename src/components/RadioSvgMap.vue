@@ -28,8 +28,9 @@
 
 <script>
 import SvgMap from './SvgMap.vue'
+import { defineComponent, ref } from "vue";
 
-export default {
+export default defineComponent({
 	name: 'RadioSvgMap',
 	components: {
 		SvgMap,
@@ -143,5 +144,5 @@ export default {
 			this.selectLocation(previousLocation)
 		},
 	},
-}
+});
 </script>

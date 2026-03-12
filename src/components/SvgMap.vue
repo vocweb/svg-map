@@ -25,9 +25,10 @@
 </template>
 
 <script>
+import { defineComponent, ref } from "vue";
 const LOCATION_DEFAULT_PROPERTIES = ['id', 'name', 'path']
 
-export default {
+export default defineComponent({
 	name: 'SvgMap',
 	props: {
 		map: {
@@ -78,5 +79,5 @@ export default {
 			)
 		},
 	},
-}
+});
 </script>
