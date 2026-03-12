@@ -9,6 +9,7 @@
 
 <script>
 import SvgMap from './SvgMap.vue'
+import { defineComponent, ref } from "vue";
 
 // Remove unused variables
 // const filteredItems = computed(() => {
@@ -21,7 +22,7 @@ import SvgMap from './SvgMap.vue'
 // // computed property that auto-updates when the prop changes
 // const propsValueArray = computed(() => props.value);
 
-export default {
+export default defineComponent({
 	name: 'CheckboxSvgMap',
 	components: {
 		SvgMap,
@@ -89,5 +90,5 @@ export default {
 			this.$emit('change', selectedLocations)
 		},
 	},
-}
+});
 </script>

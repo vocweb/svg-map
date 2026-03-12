@@ -1,266 +1,266 @@
-# svg-map
+# @vocweb/svg-map
 
-_A set of Vue.js components to display an interactive SVG map._
+Vue.js 3 components for interactive SVG maps with keyboard navigation and accessibility support.
+
+**Features:** Multi-select (checkbox), single-select (radio), customizable styling, WAI-ARIA compliant.
 
 ## Installation
 
-### npm
-
 ```shell
 # Install package
-npm install --save @vocweb/svg-map 
+npm install @vocweb/svg-map
 
-# Install SVG map 
-npm install --save @svg-country-maps/japan
-npm install --save @svg-country-maps/vietnam
+# Install map data (example)
+npm install @svg-country-maps/vietnam
 ```
 
-### yarn
+## Quick Start
 
-```shell
-# Install package
-yarn add @vocweb/svg-map 
-
-# Install SVG map 
-yarn @svg-maps/japan
-```
-
-## Usage
-
-### Demo
-
-- Svg map: `demo/components/map/Link.vue`
-- Checkbox map: `demo/components/map/Checkbox.vue`
-- Link map: `demo/components/map/Link.vue`
-- Radio map: `demo/components/map/Radio.vue`
-- Tooltip map: `demo/components/map/Tooltip.vue`
-
-### :earth_africa: Simple SVG Map
-
-This is the base component to display an SVG map.
-
-In a SFC (Single File Component):
-
-- Import `SvgMap` component from `@vocweb/svg-map`
-- Import the map you want
-- Optionally, import `@vocweb/svg-map/dist/index.css` if you want to apply the default styles
+### 1. Basic Map Rendering
 
 ```vue
 <template>
-	<svg-map :map="Japan" />
+  <svg-map :map="Vietnam" />
 </template>
 
 <script>
-import { SvgMap } from "@vocweb/svg-map";
-import Japan from "@svg-maps/japan";
+import { SvgMap } from "@vocweb/svg-map"
+import Vietnam from "@svg-country-maps/vietnam"
 
 export default {
-	name: "MyMap",
-	components: {
-		SvgMap
-	},
-	data() {
-		return {
-			Japan
-		};
-	}
-};
+  components: { SvgMap },
+  data: () => ({ Vietnam })
+}
 </script>
 
 <style src="@vocweb/svg-map/dist/index.css"></style>
 ```
 
-#### Props
+### 2. Checkbox (Multi-Select)
 
-| Prop                 | Type             | Default      | Description                                                                                                      |
-| -------------------- | ---------------- | ------------ | ---------------------------------------------------------------------------------------------------------------- |
-| map                  | Object           | **required** | Describe SVG map to display. See [maps section](#maps) for more details.                                         |
-| location-class       | String\|Function | `null`       | CSS class of each `<path>`. The function parameters are the location object and the location index.              |
-| location-tabindex    | String\|Function | `null`       | Tabindex each `<path>`. The function parameters are the location object and the location index.                  |
-| location-role        | String           | `null`       | ARIA role of each `<path>`.                                                                                      |
-| is-location-selected | Function         | `null`       | Executed to determine if a location is selected. This property is used to set the `aria-checked` HTML attribute. |
-
-**Note:** other HTML attributes (e.g. `style`, `title`, `data-*`...) can be added to and customized for each `<path>` [modifying the map object](#modify-a-map).
-
-#### Events
-
-All the listeners (click, keypress...) are applied to each location.
-
-#### Slots
-
-There are 2 named slots:
-* `before` which is before the locations
-* `after` which is after the locations
-
-### :ballot_box_with_check: Checkbox SVG Map
-
-This is an implementation of `SvgMap` that behaves like a group of checkboxes.  
-It is based on this [WAI-ARIA example](https://www.w3.org/TR/wai-aria-practices/examples/checkbox/checkbox-1/checkbox-1.html) to support keyboard navigation and be accessible.
-
-- Import `CheckboxSvgMap` component from `@vocweb/svg-map`
-- Import the map you want
-- Optionally, import `@vocweb/svg-map/dist/index.css` if you want to apply the default styles
+Multi-select map with checkbox behavior (WAI-ARIA compliant):
 
 ```vue
 <template>
-	<checkbox-svg-map v-model="selectedLocations" :map="Japan" />
+  <checkbox-svg-map v-model="selected" :map="Vietnam" />
+  <p>Selected: {{ selected }}</p>
 </template>
 
 <script>
-import { CheckboxSvgMap } from "@vocweb/svg-map";
-import Japan from "@svg-maps/japan";
+import { CheckboxSvgMap } from "@vocweb/svg-map"
+import Vietnam from "@svg-country-maps/vietnam"
 
 export default {
-	name: "MyCheckboxMap",
-	components: {
-		CheckboxSvgMap
-	},
-	data() {
-		return {
-			Japan,
-			selectedLocations: []
-		};
-	}
-};
+  components: { CheckboxSvgMap },
+  data: () => ({ Vietnam, selected: [] })
+}
 </script>
 
 <style src="@vocweb/svg-map/dist/index.css"></style>
 ```
 
-#### Props
+### 3. Radio (Single-Select)
 
-| Prop           | Type             | Default      | Description                                                                                         |
-| -------------- | ---------------- | ------------ | --------------------------------------------------------------------------------------------------- |
-| map            | Object           | **required** | Describe SVG map to display. See [maps section](#maps) for more details.                            |
-| value          | String[]         | `[]`         | List of ids of selected locations. Used for `v-model`.                                              |
-| location-class | String\|Function | `null`       | CSS class of each `<path>`. The function parameters are the location object and the location index. |
-
-**Note:** other HTML attributes (e.g. `style`, `title`, `data-*`...) can be added to and customized for each `<path>` [modifying the map object](#modify-a-map).
-
-#### Events
-
-Like for `SvgMap` all the listeners (click, keypress...) are applied to each location.
-
-| Event  | Output   | Description                                                                           |
-| ------ | -------- | ------------------------------------------------------------------------------------- |
-| change | String[] | Emits the new list of ids when a location is selected/unselected. Used for `v-model`. |
-
-#### Slots
-
-Like in `SvgMap` there are 2 named slots:
-* `before` which is before the locations
-* `after` which is after the locations
-
-**Note:** inserting focusable elements may break the checkboxes' behaviour.
-
-### :radio_button: Radio SVG Map
-
-This is an implementation of `SvgMap` that behaves like a group of radio buttons.  
-It is based on this [WAI-ARIA example](https://www.w3.org/TR/wai-aria-practices/examples/radio/radio-1/radio-1.html) to support keyboard navigation and be accessible.
-
-- Import `RadioSvgMap` component from ``@vocweb/svg-map`
-- Import the map you want
-- Optionally, import `@vocweb/svg-map/dist/index.css` if you want to apply the default styles
+Single-select map with radio button behavior (WAI-ARIA compliant, arrow key navigation):
 
 ```vue
 <template>
-	<radio-svg-map v-model="selectedLocation" :map="Japan" />
+  <radio-svg-map v-model="selected" :map="Vietnam" />
+  <p>Selected: {{ selected }}</p>
 </template>
 
 <script>
-import { RadioSvgMap } from "@vocweb/svg-map";
-import Japan from "@svg-maps/japan";
+import { RadioSvgMap } from "@vocweb/svg-map"
+import Vietnam from "@svg-country-maps/vietnam"
 
 export default {
-	name: "MyRadioMap",
-	components: {
-		RadioSvgMap
-	},
-	data() {
-		return {
-			Japan,
-			selectedLocation: null
-		};
-	}
-};
+  components: { RadioSvgMap },
+  data: () => ({ Vietnam, selected: null })
+}
 </script>
 
 <style src="@vocweb/svg-map/dist/index.css"></style>
 ```
 
-#### Props
+## Components Overview
 
-| Prop           | Type             | Default      | Description                                                                                         |
-| -------------- | ---------------- | ------------ | --------------------------------------------------------------------------------------------------- |
-| map            | Object           | **required** | Describe SVG map to display. See [maps section](#maps) for more details.                            |
-| value          | String           | `null`       | Id of selected location. Used for `v-model`.                                                        |
-| location-class | String\|Function | `null`       | CSS class of each `<path>`. The function parameters are the location object and the location index. |
+| Component | Type | Behavior | v-model |
+|-----------|------|----------|---------|
+| `SvgMap` | Base | Render SVG, click events | N/A |
+| `CheckboxSvgMap` | Wrapper | Multi-select (click/space) | String[] |
+| `RadioSvgMap` | Wrapper | Single-select (click/arrows) | String |
 
-**Note:** other HTML attributes (e.g. `style`, `title`, `data-*`...) can be added to and customized for each `<path>` [modifying the map object](#modify-a-map).
+## Props
 
+### SvgMap
+- `map` (required) - SVG map object: `{ viewBox: string, label?: string, locations: [...] }`
+- `location-class` - CSS class(es) for paths (string or function)
+- `location-tabindex` - Tabindex for paths (string or function)
+- `location-role` - ARIA role override
+- `is-location-selected` - Function to determine if location selected
 
-#### Events
+### CheckboxSvgMap
+- `value` - Array of selected location IDs (for v-model)
+- `location-class` - Optional CSS classes
 
-Like for `SvgMap` all the listeners (click, keypress...) are applied to each location.
+### RadioSvgMap
+- `value` - Single selected location ID (for v-model)
+- `location-class` - Optional CSS classes
 
-| Event  | Output | Description                                                       |
-| ------ | ------ | ----------------------------------------------------------------- |
-| change | String | Emits the new id when a location is selected. Used for `v-model`. |
+## Keyboard Navigation
 
-#### Slots
+**CheckboxSvgMap:**
+- Click: Toggle selection
+- Space: Toggle focused location
 
-Like in `SvgMap` there are 2 named slots:
-* `before` which is before the locations
-* `after` which is after the locations
+**RadioSvgMap:**
+- Click: Select location
+- Space: Select focused location
+- Arrow keys (Up/Down/Left/Right): Navigate locations
+- Tab: Move focus between map and page
 
-**Note:** inserting focusable elements may break the radio buttons' behaviour.
+## Map Data Format
 
-## Maps
+Maps use standard structure from [@svg-country-maps](https://github.com/VictorCazanave/svg-maps):
 
-### Existing maps
-
-All the existing maps are in an independant [svg-maps](https://github.com/VictorCazanave/svg-maps) project because they may be useful for other components/projects.
-
-### Custom maps
-
-You can modify existing maps or create your own.
-
-#### Modify a map
-
-1. Import the map to modify
-1. Create a new object from this map
-1. Pass this new object as `map` prop of the component
-
-```vue
-<template>
-	<svg-map :map="customJapan" />
-</template>
-
-<script>
-import { SvgMap } from "@vocweb/svg-map";
-import Japan from "@svg-maps/japan";
-
-export default {
-	name: "MyMap",
-	components: {
-		SvgMap
-	},
-	data() {
-		return {
-			customJapan: {
-				...Japan,
-				label: "Custom map label",
-				locations: Japan.locations.map(location => {
-					// Modify each location to customize/add attributes of <path>
-				})
-			}
-		};
-	}
-};
-</script>
+```javascript
+{
+  viewBox: "0 0 1000 1000",
+  label: "Vietnam",
+  locations: [
+    {
+      id: "location-id",
+      name: "Location Name",
+      path: "M 100 200 L 150 250...",
+      // Custom properties allowed (become HTML attributes on <path>):
+      "data-code": "VN-HN",
+      title: "Ho Chi Minh"
+    }
+  ]
+}
 ```
 
-It is recommended to not modify the SVG properties (viewBox, path), because it may break the map's display.
+## Customization
+
+### CSS Styling
+
+Default theme uses green stroke and red selected state. Override via CSS:
+
+```css
+.svg-map {
+  stroke: #your-color;
+}
+
+.svg-map__location {
+  fill: #your-fill;
+}
+
+.svg-map__location[aria-checked="true"],
+.svg-map__location:hover {
+  fill: #your-selected-color;
+}
+```
+
+### Dynamic Classes
+
+Use location-class prop with function for conditional styling:
+
+```vue
+<checkbox-svg-map
+  v-model="selected"
+  :map="Vietnam"
+  :location-class="(location, index) => ({
+    'is-featured': location.id === 'featured-location',
+    'is-selected': selected.includes(location.id)
+  })"
+/>
+```
+
+### Custom Map Data
+
+Modify maps by spreading and transforming:
+
+```javascript
+const customMap = {
+  ...Vietnam,
+  label: "My Custom Map",
+  locations: Vietnam.locations.map(loc => ({
+    ...loc,
+    title: `Click to select ${loc.name}`,
+    "data-population": 8000000
+  }))
+}
+```
+
+## Slots
+
+Both wrapper components support named slots for injecting content:
+
+```vue
+<checkbox-svg-map :map="mapData" v-model="selected">
+  <template #before>
+    <h2>Select Regions</h2>
+  </template>
+  <template #after>
+    <p>{{ selected.length }} regions selected</p>
+  </template>
+</checkbox-svg-map>
+```
+
+## Accessibility
+
+All components follow WAI-ARIA patterns:
+- **SvgMap:** Generic group container
+- **CheckboxSvgMap:** Checkbox group (see [WAI-ARIA checkbox example](https://www.w3.org/TR/wai-aria-practices/examples/checkbox/checkbox-1/checkbox-1.html))
+- **RadioSvgMap:** Radio group (see [WAI-ARIA radio example](https://www.w3.org/TR/wai-aria-practices/examples/radio/radio-1/radio-1.html))
+
+Features:
+- Keyboard navigation (Space, Arrow keys)
+- ARIA attributes (role, aria-checked, aria-label)
+- Screen reader support
+- Focus management
+
+## Examples
+
+See `demo/components/map/` for complete examples:
+- `Checkbox.vue` - Multi-select example
+- `Radio.vue` - Single-select example
+- `Tooltip.vue` - Map with tooltips
+- `Link.vue` - Map with links
+- `VietnamCustom.vue` - Custom styling
+- `VietnamRadio.vue` - Radio variant example
+
+## Supported Maps
+
+Available from [@svg-country-maps](https://github.com/VictorCazanave/svg-maps):
+- @svg-country-maps/vietnam
+- @svg-country-maps/japan
+- And others (check npm registry)
+
+## Troubleshooting
+
+**Map not displaying?**
+- Verify map.viewBox is valid SVG viewBox string
+- Ensure each location has id, name, and path properties
+- Check console for prop validation errors
+
+**Styling not applied?**
+- Import CSS: `import "@vocweb/svg-map/dist/index.css"`
+- Check CSS cascade (custom styles come after import)
+- Use browser DevTools to inspect applied styles
+
+**Keyboard navigation not working?**
+- Ensure component is focused (click map first)
+- RadioSvgMap requires focused path element
+- Check console for errors
+
+## Documentation
+
+- **Project overview:** `/docs/project-overview-pdr.md`
+- **Codebase structure:** `/docs/codebase-summary.md`
+- **Code standards:** `/docs/code-standards.md`
+- **Architecture:** `/docs/system-architecture.md`
+- **Roadmap:** `/docs/project-roadmap.md`
 
 ## License
 
